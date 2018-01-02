@@ -93,6 +93,7 @@ app.delete('/api/todos/:id', function destroy(req, res) {
    * id specified in the route parameter (:id) and respond
    * with deleted todo.
    */
+  res.json(todos.splice((Number(req.params.id) - 1), 1));
 });
 
 /**********
