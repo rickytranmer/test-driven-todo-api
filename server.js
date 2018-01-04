@@ -48,7 +48,9 @@ app.get('/api/todos/search', function search(req, res) {
   /* This endpoint responds with the search results from the
    * query in the request. COMPLETE THIS ENDPOINT LAST.
    */
-  res.json();
+  res.json({todos:todos.filter(function(doc) {
+    return (doc.task === req.query.q);
+  })});
 });
 
 app.get('/api/todos', function index(req, res) {
@@ -99,11 +101,8 @@ app.delete('/api/todos/:id', function destroy(req, res) {
    * with deleted todo.
    */
   deleteTodo = todos.find(function(doc) { return (doc._id === Number(req.params.id)); });
-  
 
   res.json(todos.splice(todos.indexOf(deleteTodo), 1));
-
-  res.json(deleteTodo);
 });
 
 /**********
